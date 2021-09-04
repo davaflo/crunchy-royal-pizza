@@ -8,17 +8,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     SocialLoginModule
+    
   ],
   providers: [ {
     provide: 'SocialAuthServiceConfig',
