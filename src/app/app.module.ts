@@ -21,6 +21,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MenuComponent } from './menu/menu.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { MenuService } from './shared/service';
+import { MenuThumbnailComponent } from './menu/menu-thumbnail/menu-thumbnail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,12 +33,14 @@ import { MenuService } from './shared/service';
     NavbarComponent,
     MenuComponent,
     MainpageComponent,
+    MenuThumbnailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     SocialLoginModule,
+    HttpClientModule
   ],
   providers: [
     {

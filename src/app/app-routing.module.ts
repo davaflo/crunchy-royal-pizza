@@ -11,8 +11,9 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'menu', component: MenuComponent },
-  { path: '', component: MainpageComponent, pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent },
+  { path: 'main', component: MainpageComponent},
+  { path: '**', component: PageNotFoundComponent, pathMatch: 'full' },
+
 ];
 
 @NgModule({

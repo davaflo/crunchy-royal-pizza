@@ -9,10 +9,9 @@ import { MenuService } from '../shared/service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private productoService: MenuService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    console.log(this.productoService.getAllProductos());
   }
 
 

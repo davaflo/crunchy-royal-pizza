@@ -1,19 +1,19 @@
-import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { producto } from "../models/producto.model";
-import { response } from "../models/response.model";
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { producto } from '../models/producto.model';
+import { response } from '../models/response.model';
 
 @Injectable()
-export class MenuService{
-    constructor(private http: HttpClient){
-        
+export class MenuService {
+  constructor(private http: HttpClient) {}
 
-    }
+  
 
-    getAllProductos():Observable<response[]>{
-        return this.http.get<response[]>("https://localhost:44314/api/producto");
-    }
+  getAllProductos(): Observable<response> {
+    return this.http.get<response>('https://localhost:44314/api/producto');
+   
+  }
 
+  
 }
-
