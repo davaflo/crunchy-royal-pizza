@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { producto } from 'src/app/models/producto.model';
 import { response } from 'src/app/models/response.model';
-import { MenuService } from 'src/app/shared/service';
+import { ProductoService } from 'src/app/shared/producto.service';
 
 @Component({
   selector: 'app-menu-thumbnail',
@@ -62,12 +62,12 @@ import { MenuService } from 'src/app/shared/service';
   ],
 })
 export class MenuThumbnailComponent {
-  constructor(private menuService: MenuService) {}
+  constructor(private productoService: ProductoService) {}
 
   listProductos: producto[];
 
   ngOnInit(): void {
-    this.menuService.getAllProductos().subscribe((data) => {
+    this.productoService.getAllProductos().subscribe((data) => {
       this.listProductos = data.data;
     });
   }

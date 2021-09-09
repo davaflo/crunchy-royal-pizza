@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -20,9 +19,11 @@ import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MenuComponent } from './menu/menu.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
-import { MenuService } from './shared/service';
+import { ProductoService } from './shared/producto.service';
 import { MenuThumbnailComponent } from './menu/menu-thumbnail/menu-thumbnail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UsuarioService } from './shared/usuarios.services';
+import { OrdenService } from './shared/orden.service';
 
 @NgModule({
   declarations: [
@@ -34,13 +35,16 @@ import { HttpClientModule } from '@angular/common/http';
     MenuComponent,
     MainpageComponent,
     MenuThumbnailComponent,
+    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     SocialLoginModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
@@ -62,7 +66,10 @@ import { HttpClientModule } from '@angular/common/http';
         ],
       } as SocialAuthServiceConfig,
     },
-    MenuService,
+    ProductoService,
+    OrdenService,
+    UsuarioService
+    
   ],
   bootstrap: [AppComponent],
 })

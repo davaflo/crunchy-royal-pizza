@@ -10,6 +10,55 @@
                 <div class="col-md-12">
                   <h3 class="text-center heading">Sign Up</h3>
                   <br />
+                  <div class="form-group container">
+                    <form [formGroup]="useRegistrationForm" (ngSubmit)="onFormSubmit()">
+
+                      <p >
+                        <label for="name">Name: </label>&nbsp;
+                        <input class="form-control" type="text" id="name" name="name" formControlName="name">
+                      </p>
+                     
+                      <div
+                        *ngIf="!name?.valid && (name?.dirty || name?.touched)">
+                        <small [hidden]="!name.errors.required">
+                          First Name is required
+                        </small>
+
+                      </div>
+                      <p>
+                        <label for="email">Email: </label>&nbsp;
+                        <input class="form-control" type="text" id="email" name="email" formControlName="email">
+                      </p>
+                     
+                      <div
+                        *ngIf="!email?.valid && (email?.dirty || email?.touched )">
+                        <small [hidden]="!email.errors.required">
+                          Email is required
+                        </small>
+
+                      </div>
+                      <p>
+                        <label for="password">Password: </label>&nbsp;
+                        <input class="form-control" type="password" id="password" name="password" formControlName="password">
+                      </p>
+                     
+                      <div
+                        *ngIf="!password?.valid && (password?.dirty ||password?.touched)">
+                        <small [hidden]="!password.errors.required">
+                          Password is required
+                        </small>
+
+                      </div>
+                      <p>
+                        <button class="container btn btn-primary"type="submit" [disabled]="!useRegistrationForm.valid">Sign Up</button>
+                      </p>
+                      <br>
+
+                    </form>
+                    <hr>
+                   
+
+                  </div>
                 </div>
               </div>
               <br />

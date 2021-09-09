@@ -4,4 +4,5 @@ export class producto{
     descripcion:string;
     urlimg:string;
     precio:number;
+    oxps:any;
 }

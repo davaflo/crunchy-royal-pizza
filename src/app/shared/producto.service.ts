@@ -5,7 +5,7 @@ import { producto } from '../models/producto.model';
 import { response } from '../models/response.model';
 
 @Injectable()
-export class MenuService {
+export class ProductoService {
   constructor(private http: HttpClient) {}
 
   
