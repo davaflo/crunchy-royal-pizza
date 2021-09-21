@@ -14,13 +14,13 @@
                     <form [formGroup]="useRegistrationForm" (ngSubmit)="onFormSubmit()">
 
                       <p >
-                        <label for="name">Name: </label>&nbsp;
-                        <input class="form-control" type="text" id="name" name="name" formControlName="name">
+                        <label for="nombre">Name: </label>&nbsp;
+                        <input class="form-control" type="text" id="nombre" name="nombre" formControlName="nombre">
                       </p>
                      
                       <div
-                        *ngIf="!name?.valid && (name?.dirty || name?.touched)">
-                        <small [hidden]="!name.errors.required">
+                        *ngIf="!nombre?.valid && (nombre?.dirty || nombre?.touched)">
+                        <small [hidden]="!nombre.errors.required">
                           First Name is required
                         </small>
 
@@ -38,25 +38,24 @@
 
                       </div>
                       <p>
-                        <label for="password">Password: </label>&nbsp;
-                        <input class="form-control" type="password" id="password" name="password" formControlName="password">
+                        <label for="hash_password">Password: </label>&nbsp;
+                        <input class="form-control" type="password" id="hash_password" name="hash_password" formControlName="hash_password">
                       </p>
                      
                       <div
-                        *ngIf="!password?.valid && (password?.dirty ||password?.touched)">
-                        <small [hidden]="!password.errors.required">
+                        *ngIf="!hash_password?.valid && (hash_password?.dirty ||hash_password?.touched)">
+                        <small [hidden]="!hash_password.errors.required">
                           Password is required
                         </small>
 
                       </div>
                       <p>
-                        <button class="container btn btn-primary"type="submit" [disabled]="!useRegistrationForm.valid">Sign Up</button>
+                        <button class="container btn btn-primary" type="submit" [disabled]="!useRegistrationForm.valid">Sign Up</button>
                       </p>
                       <br>
 
                     </form>
                     <hr>
-                   
 
                   </div>
                 </div>

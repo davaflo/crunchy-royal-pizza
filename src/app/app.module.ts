@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
@@ -24,6 +24,10 @@ import { MenuThumbnailComponent } from './menu/menu-thumbnail/menu-thumbnail.com
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioService } from './shared/usuarios.services';
 import { OrdenService } from './shared/orden.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { CartComponent } from './cart/cart.component';
+
+
 
 @NgModule({
   declarations: [
@@ -35,6 +39,8 @@ import { OrdenService } from './shared/orden.service';
     MenuComponent,
     MainpageComponent,
     MenuThumbnailComponent,
+    CartComponent,
+    
     
 
   ],
@@ -44,7 +50,14 @@ import { OrdenService } from './shared/orden.service';
     ReactiveFormsModule,
     SocialLoginModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      progressBar: true,
+      progressAnimation: 'decreasing',
+      preventDuplicates: true,
+    })
   ],
   providers: [
     {
@@ -60,8 +73,7 @@ import { OrdenService } from './shared/orden.service';
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('875721023059687'),
-          
+            provider: new FacebookLoginProvider('875721023059687'),          
           },
         ],
       } as SocialAuthServiceConfig,

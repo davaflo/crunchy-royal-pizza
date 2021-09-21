@@ -1,5 +1,5 @@
 export class response{
-    sucess:number;
+    success:number;
     message:string;
     data:any;
 }

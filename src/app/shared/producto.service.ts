@@ -11,7 +11,7 @@ export class ProductoService {
   
 
   getAllProductos(): Observable<response> {
-    return this.http.get<response>('https://localhost:44314/api/producto');
+    return this.http.get<response>('https://localhost:44382/api/producto');
    
   }
 

@@ -12,6 +12,9 @@ import {
   GoogleLoginProvider,
   SocialUser,
 } from 'angularx-social-login';
+import { usuario } from '../models/usuario.model';
+import { UsuarioService } from '../shared/usuarios.services';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -26,31 +29,30 @@ export class SignupComponent implements OnInit {
   isLoggedin: boolean;
 
   constructor(
-    private formBuilder:FormBuilder,
+    private formBuilder: FormBuilder,
     private socialAuthService: SocialAuthService,
-    private route: ActivatedRoute
+    private userService: UsuarioService
   ) {}
 
   ngOnInit() {
     this.useRegistrationForm = this.formBuilder.group({
-      name:['', Validators.required],
-      email:['', Validators.required],
-      password: ['',Validators.required]
-
+      nombre: ['', Validators.required],
+      email: ['', Validators.required],
+      hash_password: ['', Validators.required],
     });
     this.isLoggedin = false;
   }
 
-  get name():any{
-    return this.useRegistrationForm.get('name');
+  get nombre(): any {
+    return this.useRegistrationForm.get('nombre');
   }
 
-  get email():any{
-    return this.useRegistrationForm.get('email')
+  get email(): any {
+    return this.useRegistrationForm.get('email');
   }
 
-  get password():any{
-    return this.useRegistrationForm.get('password');
+  get hash_password(): any {
+    return this.useRegistrationForm.get('hash_password');
   }
 
   loginWithGoogle(): void {
@@ -59,17 +61,19 @@ export class SignupComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = user != null;
+
       console.log(this.socialUser);
     });
   }
   onFormSubmit(): void {
     this.formSubmitted = true;
     if (this.useRegistrationForm.valid) {
-      console.log(this.useRegistrationForm);
+      this.userService.addUserForm(this.useRegistrationForm.value);
     } else {
       this.formSubmitted = false;
     }
   }
+
   logOut(): void {
     this.socialAuthService.signOut();
   }

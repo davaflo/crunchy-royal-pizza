@@ -1,28 +1,58 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/main" routerLinkActive="active">  <img 
-        src="https://imgur.com/vFnis1e.png" 
-        alt="pizza-logo"
-        style="width: auto; height: 30px;"
-        > Crunchy Royal Pizza</a>
   
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav" style="margin-right: 200px;">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item" >
-          <a class="nav-link" routerLink="/menu" routerLinkActive="active">Menu</a>
-        </li>
-        
-        <li class="nav-item" >
-          <a class="nav-link" routerLink="/login" routerLinkActive="active">Sign In</a>
-        </li>
+  <a class="navbar-brand" routerLink="/main" routerLinkActive="active" style="color:black; font-weight: bolder;" >
+    <img
+      src="https://imgur.com/vFnis1e.png"
+      alt="pizza-logo"
+      style="width: auto; height: 30px; opacity: 1"
+    />
+    Crunchy Royal Pizza</a
+  >
 
-        <li class="nav-item" >
-          <a class="nav-link" routerLink="/signup" routerLinkActive="active">Sign Up</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <router-outlet></router-outlet> 
-  
+  <!-- <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+  <div
+    class="collapse navbar-collapse"
+    id="navbarNav"
+    style="margin-right: 200px"
+  >
+  <div class="list mx-auto">
+
+    <ul class="navbar-nav mx-auto" >
+      <li class="nav-item"  style="color:white; font-weight: bolder;">
+        <a class="nav-link" routerLink="/menu" routerLinkActive="active"
+        >Menu</a
+        >
+      </li>
+      
+      <li class="nav-item"  style="color:white; font-weight: bolder;">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active"
+        >Sign In</a
+        >
+      </li>
+      
+      <li class="nav-item"  style="color:white; font-weight: bolder;">
+        <a class="nav-link" routerLink="/signup" routerLinkActive="active"
+        >Sign Up</a
+        >
+      </li>
+      
+      <li class="nav-item"  style="color:white; font-weight: bolder;">
+        {{name}}
+      </li>
+    </ul>
+  </div>
+    <a style="text-align: left;" routerLink="/cart" routerLinkActive="active">
+    <img src="https://i.postimg.cc/KjGqq2Vb/cart.png" alt="my-cart" id="my-cart"></a>
+
+  </div>
+</nav>
