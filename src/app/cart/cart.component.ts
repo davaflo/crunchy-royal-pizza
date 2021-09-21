@@ -11,11 +11,10 @@ export class CartComponent implements OnInit {
 
   cartItems: Cart[];
 
-  constructor(  private sharedData: DataService) { }
+  constructor( private sharedData: DataService) { }
 
   ngOnInit(): void {
     this.cartItems = this.sharedData.data;
-    console.log(this.cartItems[0].Product);
   }
 
 }

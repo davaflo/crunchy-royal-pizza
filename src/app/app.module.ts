@@ -26,6 +26,7 @@ import { UsuarioService } from './shared/usuarios.services';
 import { OrdenService } from './shared/orden.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { CartComponent } from './cart/cart.component';
+import { ProductDetailComponent } from './menu/product-detail/product-detail.component';
 
 
 
@@ -40,6 +41,7 @@ import { CartComponent } from './cart/cart.component';
     MainpageComponent,
     MenuThumbnailComponent,
     CartComponent,
+    ProductDetailComponent,
     
     
 

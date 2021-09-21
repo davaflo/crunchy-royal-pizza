@@ -28,7 +28,9 @@ import { ToastrService } from 'ngx-toastr';
         />
         <div class="card-body">
           <div class="nombre-details">
-            <h5 class="card-title">{{ product.nombre }}</h5>
+            <h5 class="card-title">
+              <a style="text-decoration: none; color:black;" routerLink="/products/{{product.idProducto}}" routerLinkActive="active">{{ product.nombre}}</a>
+            </h5>
 
             <p class="card-text">
               {{ product.descripcion }}
