@@ -16,7 +16,9 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent },
   { path: 'main', component: MainpageComponent},
   { path : 'cart' , component: CartComponent},
+  { path : 'cart/:id' , component: CartComponent},
   { path: 'products/:id' , component : ProductDetailComponent},
+  { path: '' , component : MainpageComponent},
   { path: '**', component: PageNotFoundComponent, pathMatch: 'full' },
 
 ];

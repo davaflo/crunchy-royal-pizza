@@ -20,7 +20,7 @@
                      
                       <div
                         *ngIf="!nombre?.valid && (nombre?.dirty || nombre?.touched)">
-                        <small [hidden]="!nombre.errors.required">
+                        <small [hidden]="!nombre.errors.required" style="color: red;">
                           First Name is required
                         </small>
 
@@ -32,7 +32,7 @@
                      
                       <div
                         *ngIf="!email?.valid && (email?.dirty || email?.touched )">
-                        <small [hidden]="!email.errors.required">
+                        <small [hidden]="!email.errors.required" style="color: red;">
                           Email is required
                         </small>
 
@@ -44,7 +44,7 @@
                      
                       <div
                         *ngIf="!hash_password?.valid && (hash_password?.dirty ||hash_password?.touched)">
-                        <small [hidden]="!hash_password.errors.required">
+                        <small [hidden]="!hash_password.errors.required" style="color: red;">
                           Password is required
                         </small>
 

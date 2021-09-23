@@ -14,6 +14,7 @@ import {
 } from 'angularx-social-login';
 import { usuario } from '../models/usuario.model';
 import { UsuarioService } from '../shared/usuarios.services';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-signup',
@@ -31,7 +32,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private socialAuthService: SocialAuthService,
-    private userService: UsuarioService
+    private userService: UsuarioService,
+    private sharedData :DataService
   ) {}
 
   ngOnInit() {
@@ -61,6 +63,7 @@ export class SignupComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = user != null;
+      this.sharedData.data  = this.isLoggedin;
       this.userService.addSocialUser(user);
       console.log(this.socialUser);
     });
@@ -69,6 +72,8 @@ export class SignupComponent implements OnInit {
     this.formSubmitted = true;
     if (this.useRegistrationForm.valid) {
       this.userService.addUserForm(this.useRegistrationForm.value);
+      this.isLoggedin = true;
+      this.sharedData.data = this.isLoggedin;
     } else {
       this.formSubmitted = false;
     }
@@ -76,5 +81,7 @@ export class SignupComponent implements OnInit {
 
   logOut(): void {
     this.socialAuthService.signOut();
+    this.isLoggedin = false;
+    this.sharedData.data = this.isLoggedin;
   }
 }

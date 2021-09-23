@@ -135,7 +135,7 @@ export class MenuThumbnailComponent {
 
     this.toastr.success(newItem.Product.nombre + ' has been added to your cart', 'Success', {
       timeOut: 2000,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-top-left',
     });
     
   }

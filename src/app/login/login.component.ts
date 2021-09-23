@@ -55,13 +55,13 @@ export class LoginComponent implements OnInit {
       this.socialUser = user;
       this.isLoggedin = user != null;
       this.userService.userExists(user);
+      
     });
   }
 
   loginWithFacebook(): void {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
-
-    this.socialAuthService.authState.subscribe((user) => {
+  this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = user != null;
       this.userService.userExists(user);
@@ -72,10 +72,11 @@ export class LoginComponent implements OnInit {
     let Email = this.loginForm.get('email').value;
     let Password = this.loginForm.get('password').value;
 
-     this.isLoggedin = this.userService.login(Email, Password);
+    this.isLoggedin = this.userService.login(Email, Password);
   }
 
   logOut(): void {
     this.socialAuthService.signOut();
+    this.isLoggedin = false;
   }
 }

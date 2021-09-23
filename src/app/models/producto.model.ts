@@ -1,5 +1,5 @@
 export class producto{
-    id_producto:number;
+    idProducto:number;
     nombre: string;
     descripcion:string;
     urlimg:string;

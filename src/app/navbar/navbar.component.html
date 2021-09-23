@@ -59,8 +59,8 @@
       </li>
     </ul>
   </div>
-    <a style="text-align: left;" routerLink="/cart" routerLinkActive="active">
-    <img src="https://i.postimg.cc/KjGqq2Vb/cart.png" alt="my-cart" id="my-cart"></a>
+    <a style="text-align: left;" routerLink="/cart/{{email}}" routerLinkActive="active">
+    <img src="https://i.postimg.cc/KjGqq2Vb/cart.png" alt="my-cart" id="my-cart" *ngIf="isLoggedin"  ></a>
 
   </div>
 </nav>

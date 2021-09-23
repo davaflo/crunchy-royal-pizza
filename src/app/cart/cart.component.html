@@ -1,5 +1,19 @@
 <div class="container">
-  <div class="card container" style="text-align: center">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <div class="container" *ngIf="!cartItems.length" style="text-align: center;">
+    <h2>Your cart is empty</h2>
+  </div>
+
+
+
+  <div class="card container" style="text-align: center" *ngIf="cartItems.length">
     <div class="card-body">
       <h5 class="card-title">My Cart</h5>
       <div class="card-text">
@@ -12,6 +26,7 @@
               <th scope="col">Price</th>
               <th scope="col">Qty</th>
               <th scope="col">Total</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody *ngFor="let item of cartItems">
@@ -26,12 +41,57 @@
               </td>
               <td>{{ item.Product.nombre }}</td>
               <td>{{ item.Product.precio }}</td>
-              <td>{{ item.Quantity }}</td>
+              <td><input type="number" name="qty" id="qty" value="{{ item.Quantity }}"></td>
               <td>{{ item.Quantity * item.Product.precio }}</td>
+              <td><i class="fa fa-trash-alt" (click)="deleteProduct($event)"></i></td>
+              
             </tr>
           </tbody>
         </table>
+
+        <div class="container" style="text-align: center;">Total a pagar es: L {{total}}</div>
+
+
       </div>
+      <hr>
+      <div class="form-group container">
+        <form [formGroup]="orderForm" (ngSubmit)="onFormSubmit()">
+          <p>
+            <label for="email">Email: </label>&nbsp;
+            <input class="form-control" type="text" id="email" name="email" formControlName="email" readonly>
+
+          </p>
+
+          <div
+          *ngIf="!email?.valid && (email?.dirty || email?.touched )">
+          <small [hidden]="!email.errors.required" style="color: red;">
+            Email is required
+          </small>
+           </div>
+
+           <p>
+            <label for="direccion">Direccion: </label>&nbsp;
+            <input class="form-control" type="text" id="direccion" name="direccion" formControlName="direccion" >
+
+          </p>
+
+          <div
+          *ngIf="!direccion?.valid && (direccion?.dirty || direccion?.touched )">
+          <small [hidden]="!direccion.errors.required" style="color: red;">
+            Direccion es obligatoria
+          </small>
+           </div>
+
+           <p>
+             <button class="container btn btn-success" type="submit" [disabled]="!orderForm" >Procesar Orden</button>
+           </p>
+
+        </form>
+
+
+      </div>
+
+
     </div>
   </div>
 </div>

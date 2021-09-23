@@ -21,6 +21,8 @@ const httpOptions = {
 @Injectable()
 export class UsuarioService {
   res: response;
+  isLoggedin : boolean;
+
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,

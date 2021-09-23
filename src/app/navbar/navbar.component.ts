@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { DataService } from '../shared/data.service';
+import { UsuarioService } from '../shared/usuarios.services';
 
 @Component({
   selector: 'app-navbar',
@@ -13,10 +14,12 @@ export class NavbarComponent implements OnInit {
   name: any;
   socialUser: SocialUser;
   isLoggedin: boolean;  
+  email:any;
 
   constructor(private router: ActivatedRoute,
     private rout: Router,
     private socialAuthService: SocialAuthService,
+    private userService :UsuarioService
   ) {
    
   }
@@ -27,6 +30,8 @@ export class NavbarComponent implements OnInit {
       this.socialUser = user;
       this.isLoggedin = (user != null);   
       this.name = user.name;
+      this.email = user.email;
+      this.userService.userExists(this.socialUser);
     });
 
 
