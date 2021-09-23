@@ -1,36 +1,51 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, Routes } from '@angular/router';
-import { SocialAuthService, GoogleLoginProvider, SocialUser, FacebookLoginProvider } from 'angularx-social-login';
+import {
+  SocialAuthService,
+  GoogleLoginProvider,
+  SocialUser,
+  FacebookLoginProvider,
+} from 'angularx-social-login';
+import { ToastrService } from 'ngx-toastr';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { login } from '../models/login.model';
+import { response } from '../models/response.model';
+import { UsuarioService } from '../shared/usuarios.services';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
-  
   loginForm: FormGroup;
   socialUser: SocialUser;
-  isLoggedin: boolean;  
-  
+  isLoggedin: boolean;
+
   constructor(
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
     private socialAuthService: SocialAuthService,
-    private route: ActivatedRoute,
-    private router: Router 
-  ) { }
+    private userService: UsuarioService,
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
-    });    
-    
+      password: ['', Validators.required],
+    });
+
     this.isLoggedin = false;
+  }
+
+  get email(): any {
+    return this.loginForm.get('email');
+  }
+
+  get password(): any {
+    return this.loginForm.get('password');
   }
 
   loginWithGoogle(): void {
@@ -38,32 +53,29 @@ export class LoginComponent implements OnInit {
 
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
-      this.isLoggedin = (user != null);
-      console.log(this.socialUser);
+      this.isLoggedin = user != null;
+      this.userService.userExists(user);
     });
   }
 
-  loginWithFacebook():void{
+  loginWithFacebook(): void {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
 
-  this.socialAuthService.authState.subscribe((user)=>{
-    this.socialUser = user;
-    this.isLoggedin = (user != null);
-
-  });
-
+    this.socialAuthService.authState.subscribe((user) => {
+      this.socialUser = user;
+      this.isLoggedin = user != null;
+      this.userService.userExists(user);
+    });
   }
 
-  
-  goToSignUp():void {
+  onFormSubmit() {
+    let Email = this.loginForm.get('email').value;
+    let Password = this.loginForm.get('password').value;
 
-    this.router.navigate(['/signup-component']);
+     this.isLoggedin = this.userService.login(Email, Password);
   }
-
 
   logOut(): void {
     this.socialAuthService.signOut();
   }
-
-
 }

@@ -1,34 +1,35 @@
 <div class="container card">
   <img
     class="card-img-top mx-auto"
-    src="{{ product.urlimg }}"
+    src="{{ product?.urlimg }}"
     alt="Card image cap"
     style="margin-top: 10px"
   />
   <div class="card-body">
     <div class="nombre-details">
       <h5 class="card-title">
-        {{ product.nombre }}
+        {{ product?.nombre }}
       </h5>
 
       <p class="card-text">
-        {{ product.descripcion }}
+        {{ product?.descripcion }}
       </p>
-      <p class="card-text">Precio: L. {{ product.precio }}</p>
+      <p class="card-text">Precio: L. {{ product?.precio }}</p>
     </div>
   </div>
-  <div class="card-footer">
+  <div class="card-footer container">
     <div class="form-group">
-      <!-- <form class="row" [formGroup]="quantityForm" (ngSubmit)="cart(product)">
+      <form class="row" [formGroup]="quantityForm" (ngSubmit)="cart(product)">
 
-         <label class="col-sm-3 container" style="">Quantity: </label>
+       
             <input
               class="col form-control"
               type="number"
               name="quantity"
               id="quantity"
-              style="margin-right: 10px; max-width: 100px; border-style: none; border-radius: 2%;"
+              style="margin-right: 10px; max-width: 250px; border-style: none; border-radius: 2%;"
               formControlName="quantity"
+              placeholder="Quantity"
             />
             <button
             type="submit"
@@ -36,7 +37,9 @@
             >
               Add to Cart
             </button>
-          </form> -->
+          </form>
     </div>
   </div>
 </div>
+
+<app-review-thumbnail></app-review-thumbnail> 

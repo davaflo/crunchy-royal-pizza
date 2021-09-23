@@ -1,41 +1,118 @@
+<div class="container-fluid login-block">
+  <div class="row">
+    <div class="col-sm-12">
+      <form class="md-float-material form-material" action="#" method="POST">
+        <div class="auth-box card">
+          <div class="card-block">
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="text-center heading">Sign In</h3>
+                <br />
+                <div class="form-group container">
+                  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+                    <p>
+                      <label for="email">Email: </label>&nbsp;
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="email"
+                        name="email"
+                        formControlName="email"
+                      />
+                    </p>
 
+                    <div
+                      *ngIf="!email?.valid && (email?.dirty || email?.touched)"
+                    >
+                      <small [hidden]="!email.errors.required">
+                        Email is required
+                      </small>
+                    </div>
+                    <p>
+                      <label for="password">Password: </label>&nbsp;
+                      <input
+                        class="form-control"
+                        type="password"
+                        id="password"
+                        name="password"
+                        formControlName="password"
+                      />
+                    </p>
 
-  <div class="container-fluid login-block">
-    <div class="row">
-      <div class="col-sm-12">
-        <form class="md-float-material form-material" action="#" method="POST">
-          <div class="auth-box card">
-            <div class="card-block">
-              <div class="row">
-                <div class="col-md-12">
-                  <h3 class="text-center heading">Sign In</h3>
-                  <br />
+                    <div
+                      *ngIf="
+                        !password?.valid &&
+                        (password?.dirty || password?.touched)
+                      "
+                    >
+                      <small [hidden]="!hash_password.errors.required">
+                        Password is required
+                      </small>
+                    </div>
+                    <p>
+                      <button
+                        class="container btn btn-primary"
+                        type="submit"
+                        [disabled]="!loginForm.valid"
+                      >
+                        Sign In
+                      </button>
+                    </p>
+                    <br />
+                  </form>
+                  <hr />
                 </div>
               </div>
-              <!-- <div class="form-group form-primary">
-                <input type="text" class="form-control" [value]="socialUser.email" id="email" placeholder="Enter your email...">
-              </div> -->
-
-              <br />
-              <div class="col-md-12 container">
-                <div class="row" style="text-align: center">
-                  <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" (click)="loginWithGoogle()">
-                    <img src="https://imgur.com/pycZLwu.png" style="width: auto;height: 20px;"/>  Sign In Using Google</a>
-                </div>
-                <div class="row" style="text-align: center;margin-top: 10px;">
-                  <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" (click)="loginWithFacebook()">
-                    <img src="https://imgur.com/9HoShck.png" style="width: auto;height: 30px;"/>Sign In Using Facebook</a>
-                </div>
-                
-              </div>
-              <br />
-              <p class="text-inverse text-center">
-                Don't have an account yet?    
-                <a class="btn btn-primary" routerLink="/signup" routerLinkActive="active" data-abc="true" >Sign Up</a>
-              </p>
             </div>
+
+            <br />
+            <div class="col-md-12 container">
+              <div class="row" style="text-align: center">
+                <a
+                  class="
+                    btn btn-lg btn-google btn-block
+                    text-uppercase
+                    btn-outline
+                  "
+                  (click)="loginWithGoogle()"
+                >
+                  <img
+                    src="https://imgur.com/pycZLwu.png"
+                    style="width: auto; height: 20px"
+                  />
+                  Sign In Using Google</a
+                >
+              </div>
+              <div class="row" style="text-align: center; margin-top: 10px">
+                <a
+                  class="
+                    btn btn-lg btn-google btn-block
+                    text-uppercase
+                    btn-outline
+                  "
+                  (click)="loginWithFacebook()"
+                >
+                  <img
+                    src="https://imgur.com/9HoShck.png"
+                    style="width: auto; height: 30px"
+                  />Sign In Using Facebook</a
+                >
+              </div>
+            </div>
+            <br />
+            <p class="text-inverse text-center">
+              Don't have an account yet?
+              <a
+                class="btn btn-primary"
+                routerLink="/signup"
+                routerLinkActive="active"
+                data-abc="true"
+                >Sign Up</a
+              >
+            </p>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
+</div>

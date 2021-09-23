@@ -24,7 +24,7 @@ import { ToastrService } from 'ngx-toastr';
           class="card-img-top mx-auto"
           src="{{ product.urlimg }}"
           alt="Card image cap"
-          style="margin-top:10px;"
+          style="margin-top:10px; border-radius: 10px;"
         />
         <div class="card-body">
           <div class="nombre-details">

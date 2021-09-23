@@ -34,20 +34,28 @@
         >
       </li>
       
-      <li class="nav-item"  style="color:white; font-weight: bolder;">
+      <li class="nav-item"  style="color:white; font-weight: bolder;" *ngIf="!isLoggedin">
         <a class="nav-link" routerLink="/login" routerLinkActive="active"
         >Sign In</a
         >
       </li>
       
-      <li class="nav-item"  style="color:white; font-weight: bolder;">
+      <li class="nav-item"  style="color:white; font-weight: bolder;" *ngIf="!isLoggedin">
         <a class="nav-link" routerLink="/signup" routerLinkActive="active"
         >Sign Up</a
         >
       </li>
       
-      <li class="nav-item"  style="color:white; font-weight: bolder;">
-        {{name}}
+      <li class="nav-item"  style="color:white; font-weight: bolder;" *ngIf="isLoggedin">
+        <a class="nav-link" type="button" (click)="logOut()"
+        >Logout</a
+        >
+      </li>
+
+      <li class="nav-item"  style="color:white; font-weight: bolder;" *ngIf="isLoggedin">
+        <span class="nav-link"
+        >{{name}}</span
+        >
       </li>
     </ul>
   </div>

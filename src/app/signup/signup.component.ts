@@ -55,13 +55,13 @@ export class SignupComponent implements OnInit {
     return this.useRegistrationForm.get('hash_password');
   }
 
-  loginWithGoogle(): void {
+  signUpWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
 
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = user != null;
-
+      this.userService.addSocialUser(user);
       console.log(this.socialUser);
     });
   }

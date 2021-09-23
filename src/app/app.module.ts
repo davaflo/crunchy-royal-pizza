@@ -27,6 +27,7 @@ import { OrdenService } from './shared/orden.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { CartComponent } from './cart/cart.component';
 import { ProductDetailComponent } from './menu/product-detail/product-detail.component';
+import { ReviewThumbnailComponent } from './menu/product-detail/review-thumbnail/review-thumbnail.component';
 
 
 
@@ -42,6 +43,7 @@ import { ProductDetailComponent } from './menu/product-detail/product-detail.com
     MenuThumbnailComponent,
     CartComponent,
     ProductDetailComponent,
+    ReviewThumbnailComponent,
     
     
 

@@ -1,5 +1,7 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { DataService } from '../shared/data.service';
 
 @Component({
@@ -8,13 +10,33 @@ import { DataService } from '../shared/data.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  public name: any;
+  name: any;
+  socialUser: SocialUser;
+  isLoggedin: boolean;  
 
   constructor(private router: ActivatedRoute,
     private rout: Router,
+    private socialAuthService: SocialAuthService,
   ) {
-    console.log(this.router.url);
+   
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    this.socialAuthService.authState.subscribe((user) => {
+      this.socialUser = user;
+      this.isLoggedin = (user != null);   
+      this.name = user.name;
+    });
+
+
+  }
+
+
+  logOut(): void {
+    console.log("dddd")
+    this.socialAuthService.signOut();
+    this.isLoggedin = false;
+    this.rout.navigateByUrl("menu/");
+  }
 }
