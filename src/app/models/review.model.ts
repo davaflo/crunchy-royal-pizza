@@ -1,7 +1,7 @@
 export class review{
-  id_review:number;
-  descripcion:string;
-  email:string;
-  id_producto:number;
+  Id_review:number;
+  Descripcion:string;
+  Email_Usuario:string;
+  Id_Producto:number;
 
 }

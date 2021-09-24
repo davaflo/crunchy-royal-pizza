@@ -6,6 +6,6 @@ export default class orden{
 }
 
 export class oxp{
-  idProducto:number;
+  Id_Producto:number;
   Cantidad:number;
 }

@@ -19,9 +19,14 @@ export class NavbarComponent implements OnInit {
   constructor(private router: ActivatedRoute,
     private rout: Router,
     private socialAuthService: SocialAuthService,
-    private userService :UsuarioService
+    private userService :UsuarioService,
+    private shared:DataService
   ) {
-   
+
+    console.log(this.router.snapshot.paramMap.get('id'));
+    if(this.router.snapshot.paramMap.get('id') !=''){
+      this.isLoggedin = this.shared.data;   
+    }
   }
 
   ngOnInit(): void {
@@ -34,12 +39,9 @@ export class NavbarComponent implements OnInit {
       this.userService.userExists(this.socialUser);
     });
 
-
   }
 
-
   logOut(): void {
-    console.log("dddd")
     this.socialAuthService.signOut();
     this.isLoggedin = false;
     this.rout.navigateByUrl("menu/");

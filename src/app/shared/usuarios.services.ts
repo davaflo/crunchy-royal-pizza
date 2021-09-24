@@ -12,6 +12,7 @@ import { login } from '../models/login.model';
 import { usuario } from '../models/usuario.model';
 import { ToastrService } from 'ngx-toastr';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
+import { DataService } from './data.service';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -27,7 +28,8 @@ export class UsuarioService {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private shared:DataService
   ) {}
 
   addUserForm(user: usuario) {
@@ -44,8 +46,7 @@ export class UsuarioService {
             positionClass: 'toast-top-full-width',
           });
 
-          var email = user.email;
-          this.router.navigateByUrl('menu/' + email);
+          this.router.navigateByUrl('menu/' + user.email);
         } else {
           this.toastr.error(data.message, 'Error', {
             timeOut: 5000,
@@ -75,7 +76,7 @@ export class UsuarioService {
             positionClass: 'toast-top-full-width',
           });
           this.router.navigateByUrl('menu/'+ user.email);
-
+       
         }else{
 
         }
@@ -93,6 +94,7 @@ export class UsuarioService {
        })
      }else {
       this.router.navigateByUrl('menu/'+ data.data.eMail);
+    
       return true;
      }
     });
@@ -108,12 +110,12 @@ export class UsuarioService {
     this.http
     .post<response>('https://localhost:44382/api/login',log).subscribe((data) =>{
       if(data.success === 1){
-        this.toastr.success(data.message , 'Sucess', {
+        this.toastr.success(data.message , 'Success', {
           timeOut: 1000,
           positionClass: 'toast-top-right',
         });
-
         this.router.navigateByUrl('menu/'+ email);
+        this.shared.data = true;
         return true;
       }else{
         this.toastr.error(data.message, 'Error', {

@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { login } from '../models/login.model';
 import { response } from '../models/response.model';
+import { DataService } from '../shared/data.service';
 import { UsuarioService } from '../shared/usuarios.services';
 
 @Component({
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private socialAuthService: SocialAuthService,
     private userService: UsuarioService,
+    private shared:DataService
   ) {}
 
   ngOnInit() {
@@ -37,7 +39,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    this.isLoggedin = false;
+  this.isLoggedin = false;
   }
 
   get email(): any {
@@ -55,7 +57,8 @@ export class LoginComponent implements OnInit {
       this.socialUser = user;
       this.isLoggedin = user != null;
       this.userService.userExists(user);
-      
+  
+      console.log(user);
     });
   }
 
@@ -73,6 +76,8 @@ export class LoginComponent implements OnInit {
     let Password = this.loginForm.get('password').value;
 
     this.isLoggedin = this.userService.login(Email, Password);
+    // this.shared.data  =  this.isLoggedin;
+    
   }
 
   logOut(): void {

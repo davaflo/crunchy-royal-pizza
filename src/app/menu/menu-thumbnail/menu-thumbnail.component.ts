@@ -12,6 +12,7 @@ import { ProductoService } from 'src/app/shared/producto.service';
 import { DataService } from 'src/app/shared/data.service';
 import { Cart } from 'src/app/models/cart.model';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu-thumbnail',
@@ -102,35 +103,37 @@ export class MenuThumbnailComponent {
     private productoService: ProductoService,
     private formBuilder: FormBuilder,
     private sharedData : DataService,
-    private toastr : ToastrService
+    private toastr : ToastrService,
+    private route: ActivatedRoute
   ) {}
 
   listProductos: producto[];
 
   quantityForm: FormGroup;
+  
   cartItems:Cart[]=[];
-
+  
   ngOnInit(): void {
     this.productoService.getAllProductos().subscribe((data) => {
       this.listProductos = data.data;
     }
-    
     );
-
+    
     this.quantityForm = this.formBuilder.group({
       quantity: ['', Validators.required],
     });
+   
 
     this.quantityForm.get('quantity').setValue(1);
   }
 
   cart(producto: any): void {
- 
 
     let newItem = new Cart();
     newItem.Product = producto;
     newItem.Quantity = Number(this.quantityForm.get('quantity').value);
 
+    console.log( this.sharedData.data);
     this.sharedData.data.push(newItem);
 
     this.toastr.success(newItem.Product.nombre + ' has been added to your cart', 'Success', {

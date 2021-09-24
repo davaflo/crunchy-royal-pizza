@@ -23,7 +23,6 @@ import { ProductoService } from './shared/producto.service';
 import { MenuThumbnailComponent } from './menu/menu-thumbnail/menu-thumbnail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioService } from './shared/usuarios.services';
-import { OrdenService } from './shared/orden.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { CartComponent } from './cart/cart.component';
 import { ProductDetailComponent } from './menu/product-detail/product-detail.component';
@@ -83,7 +82,6 @@ import { ReviewThumbnailComponent } from './menu/product-detail/review-thumbnail
       } as SocialAuthServiceConfig,
     },
     ProductoService,
-    OrdenService,
     UsuarioService
     
   ],

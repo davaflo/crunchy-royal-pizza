@@ -12,12 +12,13 @@ import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'menu/:name', component: MenuComponent },
+  { path: 'menu/:id', component: MenuComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'main', component: MainpageComponent},
   { path : 'cart' , component: CartComponent},
   { path : 'cart/:id' , component: CartComponent},
   { path: 'products/:id' , component : ProductDetailComponent},
+  { path: 'products/:id/:email' , component : ProductDetailComponent},
   { path: '' , component : MainpageComponent},
   { path: '**', component: PageNotFoundComponent, pathMatch: 'full' },
 

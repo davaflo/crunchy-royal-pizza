@@ -23,7 +23,8 @@ export class CartComponent implements OnInit {
     private sharedData: DataService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private emailService: EmailService
+    private emailService: EmailService,
+    private orderService: OrderService
   ) {}
 
   ngOnInit(): void {
@@ -78,27 +79,43 @@ export class CartComponent implements OnInit {
     emailData.to = this.orderForm.get('email').value;
     emailData.body = 'Your order is coming!!';
     emailData.subject = 'Order Placed';
+    emailData.html = `
+        
+     <div class="card">
+        <h5 class="card-header"><h2>Thanks for your order!</h2></h5>
+        <div class="card-body">
+          <div class="form-group container"></div>
+          <p style="text-align:center">
+          The order is on its way to ${this.orderForm.get('direccion').value}, you will be paying L ${this.total} 
+        </p>
 
+
+        </div>
+      </div>`;
+    
     this.emailService.sendEmail(emailData);
-
+    
     let listaProductos:oxp[] = [];
     this.cartItems.forEach((item, index)=>{
-      let oxp:oxp;
-      oxp.idProducto = item.Product.idProducto;
-      oxp.Cantidad = item.Quantity;
-      listaProductos.push(oxp);
+      
+      let new_oxp = new oxp();
+      
+      new_oxp.Id_Producto = item.Product.idProducto;
+      new_oxp.Cantidad = item.Quantity;
+      listaProductos.push(new_oxp);
     });
     
-    let orderReq : orden = new orden();
+    let orderReq = new orden();
     orderReq.Email = emailData.to;
     orderReq.Direccion = this.orderForm.get('direccion').value;
+    emailData.html = `Your order has been to ${orderReq.Direccion} 
+                      and your total amount to pay ${this.total}`;
+    
     orderReq.productos = listaProductos;
-
     console.log(orderReq);
-
-
-
-
+    
+    this.orderService.addOrder(orderReq);
+    this.cartItems=[];
   }
 
   getTotalNeto() {
@@ -108,4 +125,5 @@ export class CartComponent implements OnInit {
       console.log(this.total);
     });
   }
+
 }
